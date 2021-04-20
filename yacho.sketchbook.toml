@@ -1,2 +1,7 @@
 sketchbook_root = '.'
 base_url = 'https://yacho-demo.netlify.app/'
+author = 'eqs'
+avatar = 'chi.png'
+bio = """
+Creative Coder
+"""

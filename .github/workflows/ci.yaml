@@ -15,8 +15,8 @@ jobs:
         - name: Clone eqs/yacho
           uses: actions/checkout@v2
           with:
-              token: ${{ secrets.GITHUB_PAT }}
               repository: eqs/yacho
+              token: ${{ secrets.GITHUB_PAT }}
               path: ~/yacho
 
         - name: Setup eqs/yacho

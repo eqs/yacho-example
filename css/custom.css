@@ -1,3 +1,7 @@
 html, main, footer {
     background: rgb(232, 232, 232);
 }
+
+footer {
+    margin-top: 0;
+}

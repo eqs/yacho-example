@@ -10,6 +10,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
         <style>
             /* Top page */
+            html body {
+                font-family: 'Fira Sans', sans-serif;
+                font-weight: 300;
+                background: rgb(232, 232, 232);
+            }
+
+            main {
+                max-width: 980px;
+                margin: auto;
+                padding: 25px;
+                flex: 1 0 auto;
+            }
+
             .profile {
                 text-align: center;
             }
@@ -17,6 +30,7 @@
             .profile img {
                 width: 18vmin;
                 height: 18vmin;
+                margin: 8px;
             }
 
             .card-body img {
@@ -29,7 +43,7 @@
 
             footer {
                 text-align: center;
-                margin: 15px 0;
+                margin: 0 0 0 15px;
             }
 
             /* Sketch page */
@@ -71,9 +85,14 @@
                 padding: 0 15px 0 5px;
             }
         </style>
+                <link rel="stylesheet" href="/css/custom.css">
                 <title>Dice</title>
     </head>
-    <body><main>
+    <body>
+
+        <nav class="navbar nabvar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">My Sketchbook</a>
+        </nav><main>
     <h1 class="entry-title">Dice</h1>
     <div class="cover">
         <img class="img-fluid rounded mx-auto d-block"
@@ -108,7 +127,7 @@
                     </div>
     </div>
         <h2 class="code-name">sketch_200214c.pde</h2>
-    <pre class="code"><code class="java">
+    <pre class="code rounded-lg mx-auto d-block"><code class="java">
 int N_SEPARATION = 2;
 
 int[] di;
@@ -272,6 +291,7 @@ void keyReleased() {
 </code></pre>
     </main>
         <footer>
+                            <p>&copy; eqs. All Rights Reserved.</p>
                     </footer>
 
         <!-- Optional JavaScript -->

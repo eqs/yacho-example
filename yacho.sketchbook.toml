@@ -5,3 +5,4 @@ avatar = 'chi.png'
 bio = """
 Creative Coder
 """
+custom_css = 'custom.css'

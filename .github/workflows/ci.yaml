@@ -16,7 +16,7 @@ jobs:
           uses: actions/checkout@v2
           with:
               repository: eqs/yacho
-              token: ${{ secrets.GITHUB_PAT }}
+              token: ${{ secrets.GITHUB_PAT || github.token }}
               ref: master
               path: ~/yacho
 

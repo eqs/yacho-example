@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
+        <style>
+            /* Top page */
+            .card-body img {
+                margin: 5px;
+            }
+
+            .card-body a {
+                margin: 5px;
+            }
+
+            /* Sketch page */
+            h1.entry-title {
+                text-align: center;
+            }
+            .cover {
+                margin: 0 20%;
+            }
+            img.image-grid {
+                width: 100%;
+            }
+
+            /* code block css */
+            h2.code-name {
+                margin: 20px 5%;
+            }
+            pre {
+                margin: 0 5%;
+            }
+
+            /* for block of numbers */
+            td.hljs-ln-numbers {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                text-align: center;
+                color: #ccc;
+                border-right: 1.25px solid #CCC;
+                vertical-align: top;
+                padding-right: 5px;
+            }
+
+            table.hljs-ln td {
+                padding: 0 15px 0 5px;
+            }
+        </style>
+        <title>Flowers</title>
+    </head>
+    <body><main>
+    <h1 class="entry-title">Flowers</h1>
+    <div class="cover">
+        <img class="img-fluid rounded mx-auto d-block"
+             src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204440.png">
+    </div>
+    <div class="container-fluid pt-3">
+        <div class="card-columns">
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204458.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204505.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204456.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204443.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204501.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200213b/imgs/Project-20200213-204453.png">
+            </div>
+                    </div>
+    </div>
+        <h2 class="code-name">sketch_200213b.pde</h2>
+    <pre class="code"><code class="java">
+final int N = 100;
+final int MAX_TRIAL = 1000;
+
+int[] nPetalsList;
+Flower[] flowerList;
+
+void setup() {
+  size(800, 800);
+  nPetalsList = new int[] {8, 10, 12, 16};
+  initFlowerList();
+  noLoop();
+}
+
+void initFlowerList() {
+  
+  flowerList = new Flower[200];
+  
+  for (int k = 0; k < flowerList.length; k++) {
+    int trial = 0;
+    while (trial < MAX_TRIAL) {
+      int n = nPetalsList[(int)random(nPetalsList.length)];
+      float r = random(8.0, 128.0);
+      float x = random(-width / 2.0, width / 2.0);
+      float y = random(-height / 2.0, height / 2.0);
+      
+      color[] palette = selectPalette();
+      Flower newFlower = new Flower(new PVector(x, y), n, r, r / 2.0 , palette);
+      
+      if (!intersects(flowerList, newFlower)) {
+        flowerList[k] = newFlower;
+        break;
+      }
+      
+      trial++;
+    }
+    
+    if (trial == MAX_TRIAL) {
+      flowerList[k] = new Flower(new PVector(0.0, 0.0), 0, -1.0, -1.0, null);
+    }
+  }
+}
+
+void draw() {
+  translate(width / 2.0, height / 2.0);
+  
+  background(0);
+  
+  for (Flower flower : flowerList) {
+    pushMatrix();
+    flower.draw();
+    popMatrix();
+  }
+
+  filter(BLUR, 0.7);
+}
+
+void mousePressed() {
+  initFlowerList();
+  redraw();
+}
+
+void keyReleased() {
+  saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+}
+
+static final String timestamp(final String name, final String ext) {
+  return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
+    "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+}
+
+color[] selectPalette() {
+   color[][] palettes = new color[][] {
+     {color(255, 0, 255), color(255, 255, 0)},
+     {color(0x5B, 0x55, 0xDC), color(0xFA, 0xEB, 0x5B)},
+     {color(0x48, 0x74, 0xCE), color(0xF8, 0xBA, 0x69)},
+     {color(0x00, 0x72, 0xC2), color(0xFF, 0xAA, 0x1C)},
+     {color(0xA6, 0x37, 0xEA), color(0xFF, 0xEA, 0x01)},
+     {color(0x4E, 0xB7, 0xD9), color(0xFF, 0xCB, 0x4F)},
+   };
+   return palettes[(int)random(palettes.length)];
+}
+class Flower {
+  int nPetals;
+  PVector pos;
+  float r;
+  float petalRadius;
+  color[] palette;
+  Flower(PVector pos, int nPetals, float r, float petalRadius, color[] palette) {
+    this.pos = pos;
+    this.nPetals = nPetals;
+    this.r = r;
+    this.petalRadius = petalRadius;
+    this.palette = palette;
+  }
+  
+  void draw() {
+    if (this.r < 0.0) {
+      return;
+    }
+    
+    pushMatrix();
+    translate(this.pos.x, this.pos.y);
+    
+    noStroke();
+    fill(palette[0]);
+    
+    for (int n = 0; n < nPetals; n++) {
+      pushMatrix();
+      float s = TWO_PI / nPetals * n + TWO_PI / nPetals / 2.0;
+      translate(petalRadius * cos(s), petalRadius * sin(s));
+      beginShape();
+      for (int k = 0; k < N; k++) {
+        float t = (TWO_PI / nPetals * k / N) + (TWO_PI / nPetals * n);
+        float r = this.r * pow(sin(t * (nPetals / 2.0)), 2.0);
+        float x = r * cos(t);
+        float y = r * sin(t);
+        
+        vertex(x, y);
+      }
+      endShape(CLOSE);
+      popMatrix();
+    }
+    
+    noStroke();
+    fill(palette[1]);
+    circle(0, 0, petalRadius);
+  
+    popMatrix();
+  }
+  
+  float getRadius() {
+    return this.r + this.petalRadius;
+  }
+}
+
+boolean intersects(Flower[] flowers, Flower newFlower) {
+  for (Flower flower : flowers) {
+    if (flower != null) {
+      PVector diffVec = PVector.sub(flower.pos, newFlower.pos);
+      float d = diffVec.mag();
+      
+      if (d < flower.getRadius() + newFlower.getRadius()) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+</code></pre>
+    </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <!-- highlight.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>hljs.initLineNumbersOnLoad();</script>
+    </body>
+</html>

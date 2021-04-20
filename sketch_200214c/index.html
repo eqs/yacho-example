@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
+        <style>
+            /* Top page */
+            .card-body img {
+                margin: 5px;
+            }
+
+            .card-body a {
+                margin: 5px;
+            }
+
+            /* Sketch page */
+            h1.entry-title {
+                text-align: center;
+            }
+            .cover {
+                margin: 0 20%;
+            }
+            img.image-grid {
+                width: 100%;
+            }
+
+            /* code block css */
+            h2.code-name {
+                margin: 20px 5%;
+            }
+            pre {
+                margin: 0 5%;
+            }
+
+            /* for block of numbers */
+            td.hljs-ln-numbers {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                text-align: center;
+                color: #ccc;
+                border-right: 1.25px solid #CCC;
+                vertical-align: top;
+                padding-right: 5px;
+            }
+
+            table.hljs-ln td {
+                padding: 0 15px 0 5px;
+            }
+        </style>
+        <title>Dice</title>
+    </head>
+    <body><main>
+    <h1 class="entry-title">Dice</h1>
+    <div class="cover">
+        <img class="img-fluid rounded mx-auto d-block"
+             src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221031.png">
+    </div>
+    <div class="container-fluid pt-3">
+        <div class="card-columns">
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221233.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221042.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221310.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221252.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221240.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="https://eqs.github.io/yacho-examples/sketch_200214c/imgs/Project-20200214-221108.png">
+            </div>
+                    </div>
+    </div>
+        <h2 class="code-name">sketch_200214c.pde</h2>
+    <pre class="code"><code class="java">
+int N_SEPARATION = 2;
+
+int[] di;
+int[] dj;
+
+color[][] dicePalettes;
+
+void setup() {
+  size(800, 800);
+  
+  dicePalettes = new color[][] {
+    {color(0, 255, 0), color(0, 255, 0), color(0, 255, 0)},
+  };
+  
+  init();
+  noLoop();
+}
+
+void draw() {
+  background(0);
+  drawPattern();
+  // filter(BLUR, 0.8);
+}
+
+void init() {
+  // 上下左右のずれの系列をつくる
+  // i: [-1, -1, 1, 1]
+  // j: [-1, 1, -1, 1]
+  di = new int[N_SEPARATION*N_SEPARATION];
+  dj = new int[N_SEPARATION*N_SEPARATION];
+  for (int i = 0; i < N_SEPARATION; i++) {
+    for (int j = 0; j < N_SEPARATION; j++) {
+      di[j + i * N_SEPARATION] = i;
+      dj[j + i * N_SEPARATION] = j;
+    }
+  }
+  
+  // 中心化
+  for (int k = 0; k < di.length; k++) {
+    di[k] = di[k] - N_SEPARATION / 2;
+    dj[k] = dj[k] - N_SEPARATION / 2;
+  }
+}
+
+void drawPattern() {
+  float sf = random(1.5, 2.0);
+  float rot = TWO_PI / (int)random(1, 13);
+  
+  translate(width / 2.0, height / 2.0);
+  scale(sf, sf);
+  rotate(rot);
+  
+  recur(new PVector(0.0, 0.0), width, 0);
+}
+
+void recur(PVector p, float s, int d) {
+  if ((d >= 1 && random(1) < d / 4.0) || d > 2) {
+    pushMatrix();
+    float rot = HALF_PI * (int)random(0, 3);
+    translate(p.x, p.y);
+    rotate(rot);
+    scale(s / (float)width, s / (float)height);
+    
+    strokeWeight(0.5 * (float)width / s);
+    drawDice((int)random(6)+1, dicePalettes[(int)random(dicePalettes.length)]);
+    
+    popMatrix();
+  } else {
+    float stepSize = s / (float)N_SEPARATION;
+    for (int k = 0; k < N_SEPARATION*N_SEPARATION; k++) {
+      PVector cp = new PVector(
+        p.x + stepSize * dj[k] + (N_SEPARATION % 2 == 0 ? stepSize / 2.0 : 0),
+        p.y + stepSize * di[k] + (N_SEPARATION % 2 == 0 ? stepSize / 2.0 : 0)
+      );
+      recur(cp, s / (float)N_SEPARATION, d + 1);
+    }
+  }
+}
+
+void drawDice(int number, color[] dicePalette) {
+  int N = 100;
+  float r = width / 8.0;
+  
+  stroke(dicePalette[0]);
+  noFill();
+  
+  beginShape();
+  for (int k = 0; k < N; k++) {
+    float t = TWO_PI * k / (float)N;
+    float x = r * cos(t);
+    float y = r * sin(t);
+    
+    if (t < PI / 2.0) {
+      x = x + (width / 2.0 - r);
+      y = y + (height / 2.0 - r);
+    } else if (t < PI) {
+      x = x - (width / 2.0 - r);
+      y = y + (height / 2.0 - r);
+    } else if (t < PI * 3 / 2) {
+      x = x - (width / 2.0 - r);
+      y = y - (height / 2.0 - r);
+    } else {
+      x = x + (width / 2.0 - r);
+      y = y - (height / 2.0 - r);
+    }
+    
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+  
+  if (number == 1) {
+    stroke(dicePalette[2]);
+    circle(0, 0, width / 4.0);
+  } else if (number == 2) {
+    stroke(dicePalette[1]);
+    circle(width / 3.0, height / 3.0, width / 5.0);
+    circle(-width / 3.0, -height / 3.0, width / 5.0);
+  } else if (number == 3) {
+    stroke(dicePalette[1]);
+    circle(width / 3.0, height / 3.0, width / 5.0);
+    circle(0.0, 0.0, width / 5.0);
+    circle(-width / 3.0, -height / 3.0, width / 5.0);
+  } else if (number == 4) {
+    stroke(dicePalette[1]);
+    circle(width / 3.0, height / 3.0, width / 5.0);
+    circle(-width / 3.0, height / 3.0, width / 5.0);
+    circle(width / 3.0, -height / 3.0, width / 5.0);
+    circle(-width / 3.0, -height / 3.0, width / 5.0);
+  } else if (number == 5) {
+    stroke(dicePalette[1]);
+    circle(0.0, 0.0, width / 5.0);
+    circle(width / 3.0, height / 3.0, width / 5.0);
+    circle(-width / 3.0, height / 3.0, width / 5.0);
+    circle(width / 3.0, -height / 3.0, width / 5.0);
+    circle(-width / 3.0, -height / 3.0, width / 5.0);
+  } else if (number == 6) {
+    stroke(dicePalette[1]);
+    circle(width / 3.0, 0.0, width / 5.0);
+    circle(-width / 3.0, 0.0, width / 5.0);
+    circle(width / 3.0, height / 3.0, width / 5.0);
+    circle(-width / 3.0, height / 3.0, width / 5.0);
+    circle(width / 3.0, -height / 3.0, width / 5.0);
+    circle(-width / 3.0, -height / 3.0, width / 5.0);
+  }
+}
+
+static final String timestamp(final String name, final String ext) {
+ return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
+   "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+}
+
+void mouseReleased() {
+  N_SEPARATION = (int)random(2, 5);
+  init();
+  redraw();
+}
+
+void keyReleased() {
+  saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+}
+</code></pre>
+    </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <!-- highlight.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>hljs.initLineNumbersOnLoad();</script>
+    </body>
+</html>

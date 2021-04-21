@@ -1,7 +1,12 @@
-html, main, footer {
-    background: rgb(232, 232, 232);
+
+h2.code-name::before {
+    content: "#";
+    font-size: 120%;
+    font-style: bold;
+    color: #00B4E6;
+    padding-right: 7.5px;
 }
 
-footer {
-    margin-top: 0;
+h2.code-name {
+    margin-top: 1.5rem;
 }

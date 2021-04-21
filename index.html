@@ -127,6 +127,42 @@
             table.hljs-ln td {
                 padding: 0 15px 0 5px;
             }
+
+            /* share button */
+            .social-btns .fbtn {
+                width: 50px;
+                display: inline-block;
+                color: var(--social-link);
+                text-align: center;
+                line-height: 18px;
+            }
+            .social-btns .fa {
+                padding: 15px 0px
+            }
+            .share-button.sharer {
+                padding: 10px 20px 20px 20px;
+            }
+            .share-button.sharer .share-btn:focus{
+                box-shadow: none;
+                outline: none !important;
+            }
+            .share-button.sharer .social-btns.active.top {
+                transform: scale(1) translateY(12px);
+            }
+            .share-button.sharer .social-btns.active {
+                opacity: 1;
+                transition: all 0.4s ease 0s;
+                visibility: visible;
+            }
+            .share-button.sharer .social-btns.social-networks {} .share-button.sharer .social.top {
+                margin-top: -80px;
+                transform-origin: 0 0 0;
+            }
+            .share-button.sharer .social-btns {
+                opacity: 0;
+                transition: all 0.4s ease 0s;
+                visibility: hidden;
+            }
         </style>
                 <link rel="stylesheet" href="/css/custom.css">
                 <title>My Sketchbook</title>
@@ -197,5 +233,17 @@
         <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <script>hljs.initLineNumbersOnLoad();</script>
+
+        <script>
+$( document ).ready(function() {
+     //custom button for homepage
+     $( ".share-btn" ).click(function(e) {
+          $('.social-networks').not($(this).next( ".social-networks" )).each(function(){
+             $(this).removeClass("active");
+         });
+         $(this).next( ".social-networks" ).toggleClass( "active" );
+    });
+});
+        </script>
     </body>
 </html>

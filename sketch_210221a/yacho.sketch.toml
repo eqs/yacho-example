@@ -1,0 +1,6 @@
+title = 'UFO: gif example'
+draft = false
+
+[video]
+type = 'gif'
+id = 'gif/sketch_210221a.gif'

@@ -21,7 +21,6 @@ jobs:
           uses: actions/checkout@v2
           with:
               repository: eqs/yacho
-              token: ${{ secrets.PAT }}
               ref: master
               path: ~/yacho
 

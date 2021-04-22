@@ -98,6 +98,31 @@
                 width: 100%;
             }
 
+            /* Video style */
+            .youtube-embed, .vimeo-embed, .neort-embed {
+                margin: 0 5%;
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+            }
+            .youtube-embed iframe, .vimeo-embed iframe, .neort-embed iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .gif-embed {
+                padding: 0 15%;
+                position: relative;
+            }
+
+            .gif-embed img {
+                width: 100%;
+            }
+
             /* code block css */
             h2.code-name {
                 margin: 20px 5%;
@@ -185,28 +210,16 @@
         <!-- Facebook Share Button -->
         <a class="fbtn" href="https://www.facebook.com/sharer/sharer.php?u=https://yacho-demo.netlify.app/sketch_200214c"><i class="fab fa-facebook"></i></a>
     </div>
-</div>        <div class="cover">
+</div>                <div class="cover">
             <img class="img-fluid rounded mx-auto d-block"
                  src="imgs/Project-20200214-221031.png">
         </div>
-    </div>
+            </div>
     <div class="container-fluid pt-3">
         <div class="card-columns">
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20200214-221233.png">
-            </div>
-                        <div class="card">
-                <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20200214-221042.png">
-            </div>
-                        <div class="card">
-                <img class="image-grid card-img-top rounded mx-auto d-block"
                      src="imgs/Project-20200214-221310.png">
-            </div>
-                        <div class="card">
-                <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20200214-221252.png">
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
@@ -214,7 +227,19 @@
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="imgs/Project-20200214-221042.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="imgs/Project-20200214-221252.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
                      src="imgs/Project-20200214-221108.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="imgs/Project-20200214-221233.png">
             </div>
                     </div>
     </div>
@@ -396,6 +421,9 @@ void keyReleased() {
         <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <script>hljs.initLineNumbersOnLoad();</script>
+
+        <!-- video -->
+        <script src="https://player.vimeo.com/api/player.js"></script>
 
         <script>
 $( document ).ready(function() {

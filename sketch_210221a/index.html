@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- ogp -->
+        <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:creator" content="eqs_work" />
+                <meta property="og:url" content="https://yacho-demo.netlify.app/" />
+        <meta property="og:type" content="website" />
+                    <meta property="og:title" content="UFO: gif example" />
+            <meta name="twitter:title" content="UFO: gif example" />
+                            <meta property="og:description" content="" />
+            <meta name="twitter:description" content="">
+                                        <meta property="og:image" content="https://yacho-demo.netlify.app/sketch_210221a/imgs/ufo.png" />
+            <meta name="twitter:image" content="https://yacho-demo.netlify.app/sketch_210221a/imgs/ufo.png" />
+                    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
+
+        <!-- Fontawesome CSS -->
+        <link href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" rel="stylesheet">
+        <style>
+
+            :root {
+                --social-link: #555;
+                --social-link-hover: #111;
+            }
+
+            /* Top page */
+            html body {
+                font-family: 'Fira Sans', sans-serif;
+                font-weight: 300;
+                background: rgb(232, 232, 232);
+            }
+
+            main {
+                max-width: 980px;
+                margin: auto;
+                padding: 25px;
+                flex: 1 0 auto;
+            }
+
+            .profile {
+                text-align: center;
+            }
+
+            .profile img {
+                width: 18vmin;
+                height: 18vmin;
+                margin: 8px;
+            }
+
+            .profile .social {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .profile .social a {
+                color: var(--social-link);
+                line-height: 0;
+                margin: 0 8px 0;
+                transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+                text-align: center;
+            }
+            .profile .social a:hover {
+                color: var(--social-link-hover);
+            }
+
+            .card-body img {
+                margin: 5px;
+            }
+
+            .card-body a {
+                margin: 5px;
+            }
+
+            footer {
+                text-align: center;
+                margin: 0 0 0 15px;
+            }
+
+            /* Sketch page */
+            .intro {
+                text-align: center;
+            }
+
+            h1.entry-title {
+                text-align: center;
+            }
+            .cover {
+                margin: 0 20%;
+            }
+            img.image-grid {
+                width: 100%;
+            }
+
+            /* Video style */
+            .youtube-embed, .vimeo-embed, .neort-embed {
+                margin: 0 5%;
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+            }
+            .youtube-embed iframe, .vimeo-embed iframe, .neort-embed iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .gif-embed {
+                padding: 0 15%;
+                position: relative;
+            }
+
+            .gif-embed img {
+                width: 100%;
+            }
+
+            /* code block css */
+            h2.code-name {
+                margin: 20px 5%;
+            }
+            pre {
+                margin: 0 5%;
+            }
+
+            /* for block of numbers */
+            td.hljs-ln-numbers {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                text-align: center;
+                color: #ccc;
+                border-right: 1.25px solid #CCC;
+                vertical-align: top;
+                padding-right: 5px;
+            }
+
+            table.hljs-ln td {
+                padding: 0 15px 0 5px;
+            }
+
+            /* share button */
+            .social-btns .fbtn {
+                width: 50px;
+                display: inline-block;
+                color: var(--social-link);
+                text-align: center;
+                line-height: 18px;
+            }
+            .social-btns .fa {
+                padding: 15px 0px
+            }
+            .share-button.sharer {
+                padding: 10px 20px 20px 20px;
+            }
+            .share-button.sharer .share-btn:focus{
+                box-shadow: none;
+                outline: none !important;
+            }
+            .share-button.sharer .social-btns.active.top {
+                transform: scale(1) translateY(12px);
+            }
+            .share-button.sharer .social-btns.active {
+                opacity: 1;
+                transition: all 0.4s ease 0s;
+                visibility: visible;
+            }
+            .share-button.sharer .social-btns.social-networks {} .share-button.sharer .social.top {
+                margin-top: -80px;
+                transform-origin: 0 0 0;
+            }
+            .share-button.sharer .social-btns {
+                opacity: 0;
+                transition: all 0.4s ease 0s;
+                visibility: hidden;
+            }
+        </style>
+                <link rel="stylesheet" href="/css/custom.css">
+                <title>UFO: gif example</title>
+    </head>
+    <body>
+
+        <nav class="navbar nabvar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">My Sketchbook</a>
+        </nav><main>
+    <div class="intro">
+        <h1 class="entry-title">UFO: gif example</h1>
+        <p></p>
+        <div class="share-button sharer">
+    <button type="button" class="btn btn-outline-dark share-btn">
+        <i class="fas fa-share-alt fa-lg"></i>
+        <span>Share</span>
+    </button>
+    <div class="social-btns top center social-networks">
+        <!-- Twitter Share Button -->
+        <a class="fbtn" href="https://twitter.com/intent/tweet?text=UFO: gif example https://yacho-demo.netlify.app/sketch_210221a"><i class="fab fa-twitter"></i></a>
+
+        <!-- Facebook Share Button -->
+        <a class="fbtn" href="https://www.facebook.com/sharer/sharer.php?u=https://yacho-demo.netlify.app/sketch_210221a"><i class="fab fa-facebook"></i></a>
+    </div>
+</div>                    <div class="gif-embed"><img src="gifs/sketch_210221a.gif"></div>
+            </div>
+    <div class="container-fluid pt-3">
+        <div class="card-columns">
+                    </div>
+    </div>
+        <h2 class="code-name">Tree.pde</h2>
+    <pre class="code rounded-lg mx-auto d-block"><code class="java">// https://stackoverflow.com/questions/3522454/how-to-implement-a-tree-data-structure-in-java
+// https://github.com/gt4dev/yet-another-tree-structure
+class TreeNode<T extends AbstractShape> {
+  
+  final int MAX_N = 8;
+  int N = 1;
+  
+  T data;
+  TreeNode<T> parent;
+  ArrayList<TreeNode<T>> children;
+
+  TreeNode(T data) {
+      this.data = data;
+      this.children = new ArrayList<TreeNode<T>>();
+  }
+  
+  private int findMinimumSquare(int n) {
+    for (int k = 1; k <= MAX_N; k++) {
+      if (n <= k * k) {
+        return k;
+      }
+    }
+    return MAX_N;
+  }
+
+  TreeNode<T> addChild(T child) {
+      TreeNode<T> childNode = new TreeNode<T>(child);
+      childNode.parent = this;
+      this.children.add(childNode);
+      this.N = findMinimumSquare(this.children.size());
+      return childNode;
+  }
+  
+  boolean isRoot() {
+    return parent == null;
+  }
+  
+  boolean isLeaf() {
+    return children.size() == 0;
+  }
+  
+  int getLevel() {
+    if (this.isRoot()) {
+      return 0;
+    } else {
+      return parent.getLevel() + 1;
+    }
+  }
+  
+  void draw() {
+    if (isLeaf()) {
+      data.draw();
+    } else {
+      for (int k = 0; k < children.size(); k++) {
+        int i = k % N;
+        int j = k / N;
+        pushMatrix();
+        translate(width / (float)N * j , height / (float)N * i);
+        scale(1.0 / N);
+        children.get(k).draw();
+        popMatrix();
+      }
+    }
+  }
+}
+</code></pre>
+        <h2 class="code-name">TreeShape.pde</h2>
+    <pre class="code rounded-lg mx-auto d-block"><code class="java">
+// http://blawat2015.no-ip.com/~mieki256/diary/201603202.html
+final Comparator<PVector> comp = new Comparator<PVector>() {
+  int compare(PVector v1, PVector v2) {
+    if (v1.z > v2.z) return 1;
+    else if (v1.z == v2.z) return 0;
+    return -1;
+  }
+};
+
+abstract class AbstractShape {
+  abstract void draw();
+}
+
+class Circle extends AbstractShape {
+  void draw() {
+    rect(0, 0, width, height);
+    translate(width / 2.0, height / 2.0);
+    ellipse(0, 0, width, height);
+  }
+}
+
+class UFO extends AbstractShape {
+  
+  color[] palette;
+  float angularVelocity = TWO_PI;
+
+  UFO(color[] palette) {
+    this(palette, TWO_PI*random(1.0, 2.0)*(random(1) > 0.5 ? 1.0 : -1.0));
+  }
+  
+  UFO(color[] palette, float angularVelocity) {
+    this.palette = palette;
+    this.angularVelocity = angularVelocity;
+  }
+  
+  void draw() {
+    float s = 0.6;
+    int nCircles = 6;
+    
+    float w = width;
+    float h = height;
+    
+    // noStroke();
+    rectMode(CENTER);
+    
+    translate(width / 2.0, height / 2.0);
+    strokeWeight(0.8);
+    
+    fill(palette[0]);
+    arc(0, 0, w*s, h*s, PI, TWO_PI);
+    
+    PVector[] points = new PVector[nCircles];
+    float circleWidth = w / 3.0;
+    float angleInterval = TWO_PI / nCircles;
+    for (int k = 0; k < nCircles; k++) {
+      float phi = angleInterval * k;
+      float t = frameCount / 60.0 / TWO_PI;
+      float cx = (w / 2.0 - circleWidth / 2.0) * cos(t * angularVelocity + phi);
+      float cz = sin(t * angularVelocity + phi);
+      points[k] = new PVector(cx, 0, cz);
+    }
+    
+    fill(palette[2]);
+    Arrays.sort(points, comp);
+    for (int k = 0; k < nCircles; k++) {
+      float cx = points[k].x;
+      arc(cx, h / 4.0, circleWidth, circleWidth, 0, PI);
+    }
+    
+    fill(palette[1]);
+    beginShape();
+    vertex(w/2.0*s, 0);
+    vertex(w/2.0, h/4.0);
+    vertex(-w/2.0, h/4.0);
+    vertex(-w/2.0*s, 0);
+    endShape(CLOSE);
+  }
+}
+</code></pre>
+        <h2 class="code-name">sketch_210221a.pde</h2>
+    <pre class="code rounded-lg mx-auto d-block"><code class="java">import java.util.Arrays;
+import java.util.Comparator;
+
+TreeNode tree;
+boolean recording = false;
+
+void setup() {
+  size(800, 800);
+  
+  frameRate(30);
+  
+  tree = new TreeNode(new UFO(randomPalette()));
+  buildTree(tree, 0);
+}
+
+void draw() {
+  background(10, 10, 64);
+  tree.draw();
+  
+  if (recording) {
+    saveFrame("frames/#####.png");
+  }
+}
+
+color[] randomPalette() {
+  color[][] palettes = new color[][] {
+    {color(#16C5F5), color(#F52F6E), color(#F5E52F)},
+    {color(#18F569), color(#9A32F5), color(#F5B249)},
+    {color(#B7F52F), color(#2F73F5), color(#F53816)},
+  };
+  
+  int k = (int)random(palettes.length);
+  return palettes[k];
+}
+
+void buildTree(TreeNode t, int depth) {
+  
+  if (depth != 0 && (random(10) < 3 || t.getLevel() >= 3)) {
+    t.addChild(new UFO(randomPalette()));
+    return;
+  }
+  
+  int[] counts = {4, 9};
+  int n = counts[(int)random(counts.length)];
+  for (int k = 0; k < n; k++) {
+    TreeNode child = t.addChild(new UFO(randomPalette()));
+    buildTree(child, depth + 1);
+  }
+}
+
+void mousePressed() {
+  tree = new TreeNode(new UFO(randomPalette()));
+  buildTree(tree, 0);
+  redraw();
+}
+
+static final String timestamp(final String name, final String ext) {
+ return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
+   "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+}
+
+void keyReleased() {
+  // saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+  recording = !recording;
+}
+</code></pre>
+    </main>
+        <footer>
+                            <p>&copy; eqs. All Rights Reserved.</p>
+                    </footer>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <!-- highlight.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>hljs.initLineNumbersOnLoad();</script>
+
+        <!-- video -->
+        <script src="https://player.vimeo.com/api/player.js"></script>
+
+        <script>
+$( document ).ready(function() {
+     //custom button for homepage
+     $( ".share-btn" ).click(function(e) {
+          $('.social-networks').not($(this).next( ".social-networks" )).each(function(){
+             $(this).removeClass("active");
+         });
+         $(this).next( ".social-networks" ).toggleClass( "active" );
+    });
+});
+        </script>
+    </body>
+</html>

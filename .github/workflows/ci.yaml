@@ -30,7 +30,7 @@ jobs:
           run: pip install -e .
 
         - name: Build web page
-          run: yacho yacho.sketchbook.toml
+          run: yacho build
 
         - name: Push to gh-pages
           uses: peaceiris/actions-gh-pages@v3

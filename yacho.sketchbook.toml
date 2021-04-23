@@ -3,11 +3,13 @@ base_url = 'https://yacho-demo.netlify.app/'
 author = 'eqs'
 avatar = 'chi.png'
 bio = """
-Creative Coder
+An example user
 """
 custom_css = 'custom.css'
 
+title = 'yacho-example'
+
 [social]
-home = "https://www.eqseqs.work"
+home = "https://github.com/eqs/yacho"
 twitter = "eqs_work"
 github = "eqs"

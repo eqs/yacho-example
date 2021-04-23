@@ -6,3 +6,8 @@ bio = """
 Creative Coder
 """
 custom_css = 'custom.css'
+
+[social]
+home = "https://www.eqseqs.work"
+twitter = "eqs_work"
+github = "eqs"

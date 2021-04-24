@@ -275,15 +275,15 @@ void init() {
   // j: [-1, 1, -1, 1]
   di = new int[N_SEPARATION*N_SEPARATION];
   dj = new int[N_SEPARATION*N_SEPARATION];
-  for (int i = 0; i < N_SEPARATION; i++) {
-    for (int j = 0; j < N_SEPARATION; j++) {
+  for (int i = 0; i &lt; N_SEPARATION; i++) {
+    for (int j = 0; j &lt; N_SEPARATION; j++) {
       di[j + i * N_SEPARATION] = i;
       dj[j + i * N_SEPARATION] = j;
     }
   }
   
   // 中心化
-  for (int k = 0; k < di.length; k++) {
+  for (int k = 0; k &lt; di.length; k++) {
     di[k] = di[k] - N_SEPARATION / 2;
     dj[k] = dj[k] - N_SEPARATION / 2;
   }
@@ -301,7 +301,7 @@ void drawPattern() {
 }
 
 void recur(PVector p, float s, int d) {
-  if ((d >= 1 && random(1) < d / 4.0) || d > 2) {
+  if ((d &gt;= 1 &amp;&amp; random(1) &lt; d / 4.0) || d &gt; 2) {
     pushMatrix();
     float rot = HALF_PI * (int)random(0, 3);
     translate(p.x, p.y);
@@ -314,7 +314,7 @@ void recur(PVector p, float s, int d) {
     popMatrix();
   } else {
     float stepSize = s / (float)N_SEPARATION;
-    for (int k = 0; k < N_SEPARATION*N_SEPARATION; k++) {
+    for (int k = 0; k &lt; N_SEPARATION*N_SEPARATION; k++) {
       PVector cp = new PVector(
         p.x + stepSize * dj[k] + (N_SEPARATION % 2 == 0 ? stepSize / 2.0 : 0),
         p.y + stepSize * di[k] + (N_SEPARATION % 2 == 0 ? stepSize / 2.0 : 0)
@@ -332,18 +332,18 @@ void drawDice(int number, color[] dicePalette) {
   noFill();
   
   beginShape();
-  for (int k = 0; k < N; k++) {
+  for (int k = 0; k &lt; N; k++) {
     float t = TWO_PI * k / (float)N;
     float x = r * cos(t);
     float y = r * sin(t);
     
-    if (t < PI / 2.0) {
+    if (t &lt; PI / 2.0) {
       x = x + (width / 2.0 - r);
       y = y + (height / 2.0 - r);
-    } else if (t < PI) {
+    } else if (t &lt; PI) {
       x = x - (width / 2.0 - r);
       y = y + (height / 2.0 - r);
-    } else if (t < PI * 3 / 2) {
+    } else if (t &lt; PI * 3 / 2) {
       x = x - (width / 2.0 - r);
       y = y - (height / 2.0 - r);
     } else {
@@ -392,8 +392,8 @@ void drawDice(int number, color[] dicePalette) {
 }
 
 static final String timestamp(final String name, final String ext) {
- return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
-   "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+ return name + &#34;-&#34; + year() + nf(month(), 2) + nf(day(), 2) +
+   &#34;-&#34; + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
 }
 
 void mouseReleased() {
@@ -403,7 +403,7 @@ void mouseReleased() {
 }
 
 void keyReleased() {
-  saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+  saveFrame(String.format(&#34;frames/%s&#34;, timestamp(&#34;Project&#34;, &#34;.png&#34;)));
 }
 </code></pre>
     </main>

@@ -262,9 +262,9 @@ void initFlowerList() {
   
   flowerList = new Flower[200];
   
-  for (int k = 0; k < flowerList.length; k++) {
+  for (int k = 0; k &lt; flowerList.length; k++) {
     int trial = 0;
-    while (trial < MAX_TRIAL) {
+    while (trial &lt; MAX_TRIAL) {
       int n = nPetalsList[(int)random(nPetalsList.length)];
       float r = random(8.0, 128.0);
       float x = random(-width / 2.0, width / 2.0);
@@ -307,12 +307,12 @@ void mousePressed() {
 }
 
 void keyReleased() {
-  saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+  saveFrame(String.format(&#34;frames/%s&#34;, timestamp(&#34;Project&#34;, &#34;.png&#34;)));
 }
 
 static final String timestamp(final String name, final String ext) {
-  return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
-    "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+  return name + &#34;-&#34; + year() + nf(month(), 2) + nf(day(), 2) +
+    &#34;-&#34; + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
 }
 
 color[] selectPalette() {
@@ -341,7 +341,7 @@ class Flower {
   }
   
   void draw() {
-    if (this.r < 0.0) {
+    if (this.r &lt; 0.0) {
       return;
     }
     
@@ -351,12 +351,12 @@ class Flower {
     noStroke();
     fill(palette[0]);
     
-    for (int n = 0; n < nPetals; n++) {
+    for (int n = 0; n &lt; nPetals; n++) {
       pushMatrix();
       float s = TWO_PI / nPetals * n + TWO_PI / nPetals / 2.0;
       translate(petalRadius * cos(s), petalRadius * sin(s));
       beginShape();
-      for (int k = 0; k < N; k++) {
+      for (int k = 0; k &lt; N; k++) {
         float t = (TWO_PI / nPetals * k / N) + (TWO_PI / nPetals * n);
         float r = this.r * pow(sin(t * (nPetals / 2.0)), 2.0);
         float x = r * cos(t);
@@ -386,7 +386,7 @@ boolean intersects(Flower[] flowers, Flower newFlower) {
       PVector diffVec = PVector.sub(flower.pos, newFlower.pos);
       float d = diffVec.mag();
       
-      if (d < flower.getRadius() + newFlower.getRadius()) {
+      if (d &lt; flower.getRadius() + newFlower.getRadius()) {
         return true;
       }
     }

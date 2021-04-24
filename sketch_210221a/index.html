@@ -219,31 +219,31 @@
         <h2 class="code-name">Tree.pde</h2>
     <pre class="code rounded-lg mx-auto d-block"><code class="java">// https://stackoverflow.com/questions/3522454/how-to-implement-a-tree-data-structure-in-java
 // https://github.com/gt4dev/yet-another-tree-structure
-class TreeNode<T extends AbstractShape> {
+class TreeNode&lt;T extends AbstractShape&gt; {
   
   final int MAX_N = 8;
   int N = 1;
   
   T data;
-  TreeNode<T> parent;
-  ArrayList<TreeNode<T>> children;
+  TreeNode&lt;T&gt; parent;
+  ArrayList&lt;TreeNode&lt;T&gt;&gt; children;
 
   TreeNode(T data) {
       this.data = data;
-      this.children = new ArrayList<TreeNode<T>>();
+      this.children = new ArrayList&lt;TreeNode&lt;T&gt;&gt;();
   }
   
   private int findMinimumSquare(int n) {
-    for (int k = 1; k <= MAX_N; k++) {
-      if (n <= k * k) {
+    for (int k = 1; k &lt;= MAX_N; k++) {
+      if (n &lt;= k * k) {
         return k;
       }
     }
     return MAX_N;
   }
 
-  TreeNode<T> addChild(T child) {
-      TreeNode<T> childNode = new TreeNode<T>(child);
+  TreeNode&lt;T&gt; addChild(T child) {
+      TreeNode&lt;T&gt; childNode = new TreeNode&lt;T&gt;(child);
       childNode.parent = this;
       this.children.add(childNode);
       this.N = findMinimumSquare(this.children.size());
@@ -270,7 +270,7 @@ class TreeNode<T extends AbstractShape> {
     if (isLeaf()) {
       data.draw();
     } else {
-      for (int k = 0; k < children.size(); k++) {
+      for (int k = 0; k &lt; children.size(); k++) {
         int i = k % N;
         int j = k / N;
         pushMatrix();
@@ -286,9 +286,9 @@ class TreeNode<T extends AbstractShape> {
         <h2 class="code-name">TreeShape.pde</h2>
     <pre class="code rounded-lg mx-auto d-block"><code class="java">
 // http://blawat2015.no-ip.com/~mieki256/diary/201603202.html
-final Comparator<PVector> comp = new Comparator<PVector>() {
+final Comparator&lt;PVector&gt; comp = new Comparator&lt;PVector&gt;() {
   int compare(PVector v1, PVector v2) {
-    if (v1.z > v2.z) return 1;
+    if (v1.z &gt; v2.z) return 1;
     else if (v1.z == v2.z) return 0;
     return -1;
   }
@@ -312,7 +312,7 @@ class UFO extends AbstractShape {
   float angularVelocity = TWO_PI;
 
   UFO(color[] palette) {
-    this(palette, TWO_PI*random(1.0, 2.0)*(random(1) > 0.5 ? 1.0 : -1.0));
+    this(palette, TWO_PI*random(1.0, 2.0)*(random(1) &gt; 0.5 ? 1.0 : -1.0));
   }
   
   UFO(color[] palette, float angularVelocity) {
@@ -339,7 +339,7 @@ class UFO extends AbstractShape {
     PVector[] points = new PVector[nCircles];
     float circleWidth = w / 3.0;
     float angleInterval = TWO_PI / nCircles;
-    for (int k = 0; k < nCircles; k++) {
+    for (int k = 0; k &lt; nCircles; k++) {
       float phi = angleInterval * k;
       float t = frameCount / 60.0 / TWO_PI;
       float cx = (w / 2.0 - circleWidth / 2.0) * cos(t * angularVelocity + phi);
@@ -349,7 +349,7 @@ class UFO extends AbstractShape {
     
     fill(palette[2]);
     Arrays.sort(points, comp);
-    for (int k = 0; k < nCircles; k++) {
+    for (int k = 0; k &lt; nCircles; k++) {
       float cx = points[k].x;
       arc(cx, h / 4.0, circleWidth, circleWidth, 0, PI);
     }
@@ -385,7 +385,7 @@ void draw() {
   tree.draw();
   
   if (recording) {
-    saveFrame("frames/#####.png");
+    saveFrame(&#34;frames/#####.png&#34;);
   }
 }
 
@@ -402,14 +402,14 @@ color[] randomPalette() {
 
 void buildTree(TreeNode t, int depth) {
   
-  if (depth != 0 && (random(10) < 3 || t.getLevel() >= 3)) {
+  if (depth != 0 &amp;&amp; (random(10) &lt; 3 || t.getLevel() &gt;= 3)) {
     t.addChild(new UFO(randomPalette()));
     return;
   }
   
   int[] counts = {4, 9};
   int n = counts[(int)random(counts.length)];
-  for (int k = 0; k < n; k++) {
+  for (int k = 0; k &lt; n; k++) {
     TreeNode child = t.addChild(new UFO(randomPalette()));
     buildTree(child, depth + 1);
   }
@@ -422,12 +422,12 @@ void mousePressed() {
 }
 
 static final String timestamp(final String name, final String ext) {
- return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
-   "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+ return name + &#34;-&#34; + year() + nf(month(), 2) + nf(day(), 2) +
+   &#34;-&#34; + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
 }
 
 void keyReleased() {
-  // saveFrame(String.format("frames/%s", timestamp("Project", ".png")));
+  // saveFrame(String.format(&#34;frames/%s&#34;, timestamp(&#34;Project&#34;, &#34;.png&#34;)));
   recording = !recording;
 }
 </code></pre>

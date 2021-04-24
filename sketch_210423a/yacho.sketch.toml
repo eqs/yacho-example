@@ -1,5 +1,7 @@
 draft = false
 
+public = ['index.html', 'sketch.js']
+
 [video]
 type = 'vimeo'
 id = '540909347'

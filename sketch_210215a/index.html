@@ -151,6 +151,37 @@
                 padding: 0 15px 0 5px;
             }
 
+            /* copy code button */
+            .copy-code-button {
+                color: #272822;
+                background-color: #FFF;
+                border-color: #272822;
+                border: 2px solid;
+                border-radius: 3px 3px 0px 0px;
+
+                display: block;
+                margin-left: auto;
+                margin-right: 12px;
+
+                margin-bottom: -2px;
+                padding: 3px 8px;
+                font-size: 0.8em;
+            }
+
+            .copy-code-button:hover {
+                cursor: pointer;
+                background-color: #F2F2F2;
+            }
+
+            .copy-code-button:focus {
+                background-color: #E6E6E6;
+                outline: 0;
+            }
+
+            .copy-code-button:active {
+                background-color: #D9D9D9;
+            }
+
             /* share button */
             .social-btns .fbtn {
                 width: 50px;
@@ -219,15 +250,11 @@
         <div class="card-columns">
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20210215-224728.png">
-            </div>
-                        <div class="card">
-                <img class="image-grid card-img-top rounded mx-auto d-block"
                      src="imgs/Project-20210215-224642.png">
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20210215-224637.png">
+                     src="imgs/Project-20210215-224725.png">
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
@@ -235,15 +262,19 @@
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
+                     src="imgs/Project-20210215-224728.png">
+            </div>
+                        <div class="card">
+                <img class="image-grid card-img-top rounded mx-auto d-block"
                      src="imgs/Project-20210215-224630.png">
             </div>
                         <div class="card">
                 <img class="image-grid card-img-top rounded mx-auto d-block"
-                     src="imgs/Project-20210215-224725.png">
+                     src="imgs/Project-20210215-224637.png">
             </div>
                     </div>
     </div>
-        <h2 class="code-name">sketch_210215a.pde</h2>
+    <h2 class="code-name">sketch_210215a.pde</h2>
     <pre class="code rounded-lg mx-auto d-block"><code class="java">
 final int N = 100;
 final int MAX_TRIAL = 1000;
@@ -422,9 +453,56 @@ boolean intersects(Flower[] flowers, Flower newFlower) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <!-- highlight.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-        <script>hljs.initLineNumbersOnLoad();</script>
+
+        
+            <script>
+// https://github.com/ribice/kiss/blob/003f9427f00e4f2d65e88648496c734c76b5fb6d/static/js/copycode.js
+/* global clipboard */
+/* eslint-disable no-console */
+function addCopyButtons(clipboard) {
+    document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+        var button = document.createElement('button');
+        button.className = 'copy-code-button';
+        button.type = 'button';
+        button.innerText = 'Copy';
+        button.addEventListener('click', function () {
+            clipboard.writeText(codeBlock.innerText).then(function () {
+                /* Chrome doesn't seem to blur automatically,
+                   leaving the button in a focused state. */
+                button.blur();
+                button.innerText = 'Copied!';
+                setTimeout(function () {
+                    button.innerText = 'Copy';
+                }, 2000);
+            }, function (error) {
+                button.innerText = 'Error';
+            });
+        });
+        var pre = codeBlock.parentNode;
+        if (pre.parentNode.classList.contains('highlight')) {
+            var highlight = pre.parentNode;
+            highlight.parentNode.insertBefore(button, highlight);
+        } else {
+            pre.parentNode.insertBefore(button, pre);
+        }
+    });
+}
+if (navigator && navigator.clipboard) {
+    addCopyButtons(navigator.clipboard);
+} else {
+    var script = document.createElement('script');
+    script.src =
+        'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js';
+    script.integrity = 'sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=';
+    script.crossOrigin = 'anonymous';
+    script.onload = function () {
+        addCopyButtons(clipboard);
+    };
+    document.body.appendChild(script);
+}
+    </script>
+    
 
         <!-- video -->
         <script src="https://player.vimeo.com/api/player.js"></script>

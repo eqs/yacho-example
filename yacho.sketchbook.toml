@@ -9,6 +9,10 @@ custom_css = 'custom.css'
 
 title = 'yacho-example'
 
+[code]
+line_number = false
+copy_button = true
+
 [social]
 home = "https://github.com/eqs/yacho"
 twitter = "eqs_work"
